@@ -1,0 +1,90 @@
+/**
+ * 自定义样式：VitePress 默认主题 + 品牌色覆盖
+ * 想换风格，改这里的变量就够了
+ */
+
+:root {
+  /* 品牌色：从蓝紫改成暖橙色，一眼就能看出差别 */
+  --vp-c-brand-1: #d97706;
+  --vp-c-brand-2: #b45309;
+  --vp-c-brand-3: #f59e0b;
+  --vp-c-brand-soft: rgba(217, 119, 6, 0.14);
+
+  /* 主按钮 */
+  --vp-button-brand-border: transparent;
+  --vp-button-brand-text: #ffffff;
+  --vp-button-brand-bg: var(--vp-c-brand-2);
+  --vp-button-brand-hover-border: transparent;
+  --vp-button-brand-hover-text: #ffffff;
+  --vp-button-brand-hover-bg: var(--vp-c-brand-1);
+
+  /* 首页大标题渐变 */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, #f59e0b 20%, #d97706 60%);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #fbbf24 40%, #d97706 60%);
+  --vp-home-hero-image-filter: blur(56px);
+
+  /* 正文行距稍宽松，长时间阅读更舒服 */
+  --vp-layout-max-width: 1500px;
+}
+
+.dark {
+  --vp-c-brand-1: #fbbf24;
+  --vp-c-brand-2: #f59e0b;
+  --vp-c-brand-3: #d97706;
+  --vp-c-brand-soft: rgba(251, 191, 36, 0.16);
+}
+
+/* 正文宽度略微收窄，笔记类内容更好读 */
+.vp-doc {
+  line-height: 1.8;
+}
+
+/* 代码块圆角柔和一点 */
+.vp-doc div[class*='language-'] {
+  border-radius: 10px;
+}
+
+/* 表格更紧凑 */
+.vp-doc table {
+  display: table;
+  width: 100%;
+}
+
+/* 笔记列表页的卡片样式（notes/index.md 使用） */
+.note-list {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.note-card {
+  display: block;
+  padding: 14px 18px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  text-decoration: none !important;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+.note-card:hover {
+  border-color: var(--vp-c-brand-1);
+  background-color: var(--vp-c-bg-soft);
+}
+
+.note-card .note-title {
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.note-card .note-desc {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}
+
+.note-card .note-meta {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--vp-c-text-3);
+}
