@@ -78,6 +78,38 @@ vitepress/
 
 改完保存，浏览器立刻变色。想换回 VitePress 默认蓝紫，把这几行删掉即可。
 
+## 从 Obsidian 批量导入笔记
+
+项目根目录有 `migrate-notes.py`，用来把 Obsidian 仓库的笔记搬进来。
+
+```bash
+python migrate-notes.py --dry-run   # 先看分类结果，不写文件
+python migrate-notes.py             # 正式迁移
+```
+
+脚本做的事：
+
+1. 复制 `.md` 到 `docs/notes/CSharp/<分类>/`
+2. `![[图片.png]]` 转成标准语法 `![图片](/csharp/图片.png)`
+3. 图片复制到 `docs/public/csharp/`
+4. 自动生成 front-matter（标题取文件名，日期取文件修改时间）
+5. 跳过 0 字节的空文件
+6. **源目录始终只读**
+
+脚本可重复执行，每次会重建目标目录。所以在 Obsidian 里改了笔记，重跑一次就同步了。
+
+### 改分类规则
+
+编辑脚本顶部的 `CATEGORIES` 列表，按关键词匹配归入分类；子目录的归类在 `PATH_OVERRIDES` 里配置。
+
+### 迁移时踩过的三个坑（脚本已处理）
+
+| 坑 | 表现 | 处理 |
+|---|---|---|
+| YAML 日期 | `date: 2026-09-24` 被解析成日期对象，构建报错 | 所有 front-matter 值加双引号 |
+| 裸尖括号 | `list<int>` 被 Vue 当 HTML 标签，报 missing end tag | 代码块外转义为 `&lt;` `&gt;` |
+| 空方括号 | `bool[]()` 被 Markdown 当链接，产生死链 | 转义为 `\[\]()` |
+
 ## 用 Git 管版本
 
 ```bash
