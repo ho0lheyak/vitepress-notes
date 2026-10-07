@@ -42,6 +42,10 @@ export default defineConfig({
   lang: 'zh-CN',
   title: '我的笔记',
   description: '随手记的技术笔记与读书摘录',
+  // 部署在 https://ho0lheyak.github.io/vitepress-notes/ 的子路径下，
+  // 资源必须带这个前缀，否则线上白屏。
+  // 本地预览时用根路径，访问 http://localhost:5173/ 更方便。
+  base: process.env.GITHUB_ACTIONS ? '/vitepress-notes/' : '/',
   lastUpdated: true,
   cleanUrls: true,
   head: [
